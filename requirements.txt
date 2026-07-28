@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+SQLAlchemy
+pydantic
+PyPDF2
+python-multipart
+sentence-transformers
+transformers
+tensorflow
+scikit-learn
+faiss-cpu
+python-dotenv
+loguru
+joblib
+numpy
