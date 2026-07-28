@@ -2,7 +2,7 @@ services:
   - type: web
     name: research-knowledge-assistant
     env: python
-    pythonVersion: 3.11.x
+    pythonVersion: 3.11.0
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1
     autoDeploy: true

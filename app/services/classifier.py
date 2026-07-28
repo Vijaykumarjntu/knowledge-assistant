@@ -5,7 +5,10 @@ from pathlib import Path
 from typing import Optional
 
 import numpy as np
-import tensorflow as tf
+try:
+    import tensorflow as tf
+except Exception:
+    tf = None
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import LabelEncoder
 
@@ -37,6 +40,10 @@ class ClassifierService:
         self._load_artifacts()
 
     def _load_artifacts(self):
+        if not tf:
+            logger.debug("TensorFlow not available; skipping classifier artifact load")
+            return
+
         if VECTORIZER_PATH.exists() and LABEL_ENCODER_PATH.exists() and Path(MODEL_PATH).exists():
             with open(VECTORIZER_PATH, "rb") as handle:
                 self.vectorizer = pickle.load(handle)
@@ -59,6 +66,8 @@ class ClassifierService:
         return label, confidence
 
     def train(self, texts, labels, epochs: int = 10, batch_size: int = 16):
+        if not tf:
+            raise RuntimeError("TensorFlow is not installed in this environment. Install TensorFlow or pin a Python runtime that supports it to enable training.")
         self.vectorizer = TfidfVectorizer(max_features=2000, ngram_range=(1, 2), stop_words="english")
         self.label_encoder = LabelEncoder()
         x = self.vectorizer.fit_transform(texts).toarray()
