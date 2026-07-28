@@ -49,6 +49,14 @@ Train or retrain the document classifier:
 python scripts/train_classifier.py
 ```
 
+Important: training the classifier is only required if you want to use the `POST /classifier/train` or `POST /documents/{document_id}/classify` functionality. You do NOT need to run classifier training for search, QA, compare, or summarize endpoints.
+
+The classifier is also used for automatic document category labeling on upload only when a trained model is already available; if no classifier exists, uploads still work normally.
+
+Required steps for QA/search to work:
+- Upload PDFs via `POST /documents/upload` (this extracts text, creates chunks, computes embeddings, and adds vectors to the index).
+- Ensure the FAISS index and embeddings are available (uploads/processes create them automatically). Once documents are processed the `POST /search`, `POST /qa`, `POST /compare`, and `POST /summarize` endpoints will return results based on the uploaded content.
+
 ## Notes
 
 - The system uses `sentence-transformers` for embeddings and a FAISS-backed vector store.

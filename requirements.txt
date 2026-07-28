@@ -6,10 +6,14 @@ PyPDF2
 python-multipart
 sentence-transformers
 transformers
-tensorflow
+torch
+numpy
 scikit-learn
 faiss-cpu
 python-dotenv
-loguru
-joblib
-numpy
+safetensors
+
+# Optional classifier training support:
+# tensorflow-cpu
+# If you want to use /documents/{document_id}/classify or auto-document categorization
+# at upload, pin Python to 3.10 or 3.11 in Render and install tensorflow separately.
