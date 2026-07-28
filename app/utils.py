@@ -4,10 +4,11 @@ import uuid
 from pathlib import Path
 from datetime import datetime
 
-from .config import DOCUMENT_DIR, STORAGE_DIR
+from .config import DATA_DIR, DOCUMENT_DIR, STORAGE_DIR
 
 
 def ensure_directories():
+    os.makedirs(DATA_DIR, exist_ok=True)
     os.makedirs(DOCUMENT_DIR, exist_ok=True)
     os.makedirs(STORAGE_DIR, exist_ok=True)
 
