@@ -2,11 +2,10 @@ fastapi
 uvicorn[standard]
 SQLAlchemy
 pydantic
-PyPDF2
+pypdf
 python-multipart
 sentence-transformers
 transformers
-torch
 numpy
 scikit-learn
 faiss-cpu

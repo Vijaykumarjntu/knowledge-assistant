@@ -1,7 +1,7 @@
 import logging
 import os
 import numpy as np
-from PyPDF2 import PdfReader
+from pypdf import PdfReader
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import func
 
